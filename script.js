@@ -28,8 +28,6 @@ const operate = (n1, n2, operator) => {
       }
 }
 
-
-
 let display = [];
 
 const view = document.querySelector(".calc-result h1");
@@ -41,18 +39,29 @@ btns.forEach((btn) => {
             display.push(btnText);
             if(btnText === 'C'){
                   display = [];
+                  view.textContent = 0;
             }else if(btnText === '='){
                   display.pop();
-                  if(display.includes('+')){
-                        num1 = Number(display.slice(0, display.indexOf('+')).join(''));
-                        num2 = Number(display.slice(display.indexOf('+')+1, display.length).join(''));
-                        operator = '+';
-                        let total = operate(num1, num2, operator);
-                        view.textContent = total;
-                        
-                  }
+                  setValues(display);
             }else{
                   view.textContent = display.join('');
             }
       });
 })
+
+const setValues = (array) => {
+      let oprs = ['+', '-', '*', '/'];
+      let opr = array.filter((element) => {
+            if(oprs.includes(element)){
+                  return element;
+            }
+      }).join();
+      if(array.includes(opr)){
+            num1 = Number(array.slice(0, array.indexOf(opr)).join(''));
+            num2 = Number(array.slice(array.indexOf(opr)+1, array.length).join(''));
+            operator = opr;
+            let total = operate(num1, num2, operator);
+            view.textContent = total;  
+            display = [total];                
+      }
+}
