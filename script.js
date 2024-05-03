@@ -60,8 +60,13 @@ const setValues = (array) => {
             num1 = Number(array.slice(0, array.indexOf(opr)).join(''));
             num2 = Number(array.slice(array.indexOf(opr)+1, array.length).join(''));
             operator = opr;
-            let total = operate(num1, num2, operator);
-            view.textContent = total;  
-            display = [total];                
+            let total = Math.round(operate(num1, num2, operator)*10000)/10000;
+            if(!isFinite(total)){
+                  view.textContent = 'Error';
+                  display = [];
+            }else{
+                  display = [total];  
+                  view.textContent = total;
+            }     
       }
 }
