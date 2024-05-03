@@ -36,16 +36,17 @@ const btns = Array.from(document.querySelectorAll("button"));
 btns.forEach((btn) => {
       btn.addEventListener('click', function(event) {
             let btnText = event.target.textContent;
-            display.push(btnText);
-            if(btnText === 'C'){
+            if(btnText === 'Back'){
+                  display.pop();
+            }else if(btnText === 'Clear'){
                   display = [];
-                  view.textContent = 0;
             }else if(btnText === '='){
                   display.pop();
                   setValues(display);
             }else{
-                  view.textContent = display.join('');
+                  display.push(btnText);
             }
+            view.textContent = display.join('');
       });
 })
 

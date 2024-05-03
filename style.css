@@ -50,6 +50,10 @@ body {
       margin-bottom: 0;
 }
 
+.grid-cont ul > li:nth-child(-n+2) button{
+      width: 192px;
+}
+
 .grid-cont ul {
       width: 400px;
       display: flex;
