@@ -46,7 +46,6 @@ btns.forEach((btn) => {
                   if(display[0] === 'Error'){
                         display = [];
                   }
-                  console.log(typeof btnText)
                   display.push(btnText);
             }
             view.value = display.join(''); 
@@ -74,20 +73,18 @@ const setValues = (array) => {
       }
 }
 
-document.addEventListener('keypress', (event) => {
+document.addEventListener('keydown', (event) => {
       let key = event.key;
       let numOps = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','+','-','*','/','.']
-      if(numOps.includes(key)){
+      if(display[0] === 'Error'){
+            display = [];
             display.push(key);
-      }
-      view.value = display.join(''); 
-});
-
-document.addEventListener('keydown', (event) => {
-      if(event.key === 'Backspace'){
+      }else if(numOps.includes(key)){
+            display.push(key);
+      }else if(event.key === 'Backspace'){
             display.pop();
       }else if(event.key === 'Enter'){
             setValues(display);
       }
       view.value = display.join(''); 
-})
+});
