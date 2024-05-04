@@ -16,7 +16,7 @@ body {
       align-items: center;
 }
 
-.calc-result > h1 {
+.calc-result > input {
       background-color: #393e46;
       color: #fff;
       font-size: 3em;
@@ -28,6 +28,12 @@ body {
       margin-bottom: 1rem;
       border: 2px solid #a85400;
       border-radius: 8px;
+}
+
+.calc-result input:focus {
+      background-color: none;
+      border: none;
+      outline: none;
 }
 
 .grid-cont ul > li button {

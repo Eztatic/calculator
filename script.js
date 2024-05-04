@@ -30,7 +30,7 @@ const operate = (n1, n2, operator) => {
 
 let display = [];
 
-const view = document.querySelector(".calc-result h1");
+const view = document.querySelector(".calc-result input");
 const btns = Array.from(document.querySelectorAll("button"));
 
 btns.forEach((btn) => {
@@ -41,12 +41,15 @@ btns.forEach((btn) => {
             }else if(btnText === 'Clear'){
                   display = [];
             }else if(btnText === '='){
-                  display.pop();
                   setValues(display);
             }else{
+                  if(display[0] === 'Error'){
+                        display = [];
+                  }
+                  console.log(typeof btnText)
                   display.push(btnText);
             }
-            view.textContent = display.join('');
+            view.value = display.join(''); 
       });
 })
 
@@ -58,16 +61,15 @@ const setValues = (array) => {
             }
       }).join();
       if(array.includes(opr)){
-            num1 = Number(array.slice(0, array.indexOf(opr)).join(''));
+            num1 = Number(array.slice(0, array.indexOf(opr))
+                               .join(''));
             num2 = Number(array.slice(array.indexOf(opr)+1, array.length).join(''));
             operator = opr;
-            let total = Math.round(operate(num1, num2, operator)*10000)/10000;
+            let total = Math.round(operate(num1, num2, operator)*100)/100;
             if(!isFinite(total)){
-                  view.textContent = 'Error';
-                  display = [];
+                  display = ['Error'];
             }else{
-                  display = [total];  
-                  view.textContent = total;
-            }     
+                  display = [total];
+            } 
       }
 }
