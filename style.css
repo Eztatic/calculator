@@ -31,8 +31,6 @@ body {
 }
 
 .calc-result input:focus {
-      background-color: none;
-      border: none;
       outline: none;
 }
 

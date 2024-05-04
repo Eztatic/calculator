@@ -73,3 +73,21 @@ const setValues = (array) => {
             } 
       }
 }
+
+document.addEventListener('keypress', (event) => {
+      let key = event.key;
+      let numOps = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','+','-','*','/','.']
+      if(numOps.includes(key)){
+            display.push(key);
+      }
+      view.value = display.join(''); 
+});
+
+document.addEventListener('keydown', (event) => {
+      if(event.key === 'Backspace'){
+            display.pop();
+      }else if(event.key === 'Enter'){
+            setValues(display);
+      }
+      view.value = display.join(''); 
+})
